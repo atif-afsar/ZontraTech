@@ -19,25 +19,19 @@ export class EmailConfigError extends Error {
  * @returns {{ serviceId: string, templateId: string, publicKey: string }}
  */
 export function getEmailConfig() {
-  // Read raw values from Vite env
-  let serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  let templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  let publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-  // Recipient (the developer's email where messages should be delivered)
-  let receiverEmail = import.meta.env.VITE_EMAILJS_RECEIVER;
-  let receiverName = import.meta.env.VITE_EMAILJS_RECEIVER_NAME;
-
   // Helper: sanitize values by trimming and removing surrounding quotes/newlines
   const sanitize = (v) => {
     if (typeof v !== 'string') return v;
     return v.trim().replace(/^"|"$|^'|'$/g, '').replace(/\r?\n/g, '');
   };
 
-  serviceId = sanitize(serviceId);
-  templateId = sanitize(templateId);
-  publicKey = sanitize(publicKey);
-  receiverEmail = sanitize(receiverEmail);
-  receiverName = sanitize(receiverName);
+  // Read raw values from Vite env and sanitize immediately
+  const serviceId = sanitize(import.meta.env.VITE_EMAILJS_SERVICE_ID);
+  const templateId = sanitize(import.meta.env.VITE_EMAILJS_TEMPLATE_ID);
+  const publicKey = sanitize(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+  // Recipient (the developer's email where messages should be delivered)
+  const receiverEmail = sanitize(import.meta.env.VITE_EMAILJS_RECEIVER);
+  const receiverName = sanitize(import.meta.env.VITE_EMAILJS_RECEIVER_NAME);
 
   // receiverEmail is required if your EmailJS template expects an explicit
   // recipient (common when templates are configured to accept a `to_email` param).
