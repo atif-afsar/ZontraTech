@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+
+/* Custom animations for the landing page */
+
+/* Import the Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+/*
+  1. DEFINE YOUR THEME VARIABLES HERE
+  These variables are globally available throughout your app.
+*/
+:root {
+  /* Color Palette */
+  --color-primary: #0070f3;
+  --color-primary-dark: #005bb5;
+  --color-secondary: #7928ca;
+  --color-accent: #00dfd8;
+  --color-dark-bg: #0a0a1a;
+  --color-card-bg: #121223;
+  --color-light-text: #e0e0e0;
+  --color-subtle-text: #88889a;
+
+  /* Font Family */
+  --font-sans: 'Inter', sans-serif;
+}
+
+/*
+  2. APPLY BASE STYLES TO YOUR SITE
+  This sets the default background, text color, and font for the entire website.
+*/
+body {
+  background-color: var(--color-dark-bg);
+  color: var(--color-light-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+  3. INCLUDE TAILWIND'S DIRECTIVES
+  This is where Tailwind generates all of its utility classes.
+*/
+
+/* Loader & utility animations */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+/* small neon glow helper for loader text if needed */
+.neon-text {
+  text-shadow: 0 2px 8px rgba(0,112,243,0.18), 0 0 18px rgba(124,58,237,0.06);
+}
+
